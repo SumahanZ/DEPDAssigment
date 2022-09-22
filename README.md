@@ -1,6 +1,6 @@
-# testproject
+# DEPD Mission 1
 
-A new Flutter project.
+Flutter Widget Challenge.
 
 ## Getting Started
 
