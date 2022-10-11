@@ -23,10 +23,6 @@ class _LoginPageState extends State<LoginPage> {
   final controllerPhone = TextEditingController();
   final controllerCity = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String inputName = "";
-  String inputEmail = "";
-  String inputPhone = "";
-  String inputCity = "";
   bool isHide = true;
 
   @override
@@ -44,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
     return (int.tryParse(value) == null) ? false : true;
   }
 
-  void disposeshowAlertDialogSuccess(BuildContext context) {
+  void disposeshowAlertDialogSuccess(BuildContext context, Map result) {
     // set up the button
     Widget okButton = TextButton(
       child: const Text("OK"),
@@ -58,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
     AlertDialog alert = AlertDialog(
       title: const Text("Booking Confirmation"),
       content: Text(
-          "Name: $inputName\nEmail: $inputEmail\nPhone: $inputPhone\nCity: $inputCity"),
+          "Name: ${result["email"]}\nEmail: ${result["email"]}\nPhone: ${result["phone"]}\nCity: ${result["city"]}"),
       actions: [
         okButton,
       ],
@@ -84,8 +80,8 @@ class _LoginPageState extends State<LoginPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("Booking Confirmation"),
-      content: Text("Please fill all form field!"),
+      title: const Text("Booking Confirmation"),
+      content: const Text("Please fill all form field correctly!"),
       actions: [
         okButton,
       ],
@@ -189,11 +185,13 @@ class _LoginPageState extends State<LoginPage> {
                     label: const Text("Book Now"),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        inputName = controllerName.text;
-                        inputEmail = controllerEmail.text;
-                        inputPhone = controllerPhone.text.toString();
-                        inputCity = controllerCity.text.toString();
-                        disposeshowAlertDialogSuccess(context);
+                        Map result = {
+                          "name": controllerName.text, 
+                          "email": controllerEmail.text,
+                          "phone": controllerPhone.text.toString(),
+                          "city": controllerCity.text,
+                        };
+                        disposeshowAlertDialogSuccess(context, result);
                       } else {
                         disposeshowAlertDialogFailure(context);
                       }
