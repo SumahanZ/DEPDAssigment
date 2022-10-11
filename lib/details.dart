@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:favorite_button/favorite_button.dart';
+import 'login.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
@@ -18,6 +19,14 @@ class _DetailsPageState extends State<DetailsPage> {
     const rowImage4 = 'assets/row4.jpg';
     return Scaffold(
       backgroundColor: Colors.red,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.pushNamed(context, "/login");
+        },
+        label: Text("Book Now"),
+        icon: Icon(Icons.add),
+
+      ),
       appBar: AppBar(
         title: const Text("Mission 1",
             style: TextStyle(

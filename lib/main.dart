@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'details.dart';
-import 'package:favorite_button/favorite_button.dart';
+import 'login.dart';
 
 void main() {
   runApp(const MyNewApp());
@@ -12,6 +12,10 @@ class MyNewApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DetailsPage());
+      initialRoute: "/",
+      routes: {
+        "/": (context) => const DetailsPage(),
+        "/login": (context) => const LoginPage(),
+      });
   }
 }
